@@ -81,4 +81,4 @@ Note to self: This last one might look a bit tricky but the important thing to
 remember is to apply the beta reduction process as is meaning to reduce the
 leftmost outermost lambdas first and then the terms nested within after you've
 ran out of arguments to apply.
-}
+-}
