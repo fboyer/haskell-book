@@ -119,4 +119,74 @@ z = 7
 x = y ^ 2
 waxOn = x * 5
 y = z + 8
+
+1. Now you have a value called waxOn in your REPL. What do you think will happen
+if you enter:
+10 + waxOn
+-> 1135
+-- or
+(+10) waxOn
+-> 1135
+-- or
+(-) 15 waxOn
+-> -1110
+-- or
+(-) waxOn 15
+-> 1110
+
+2. Earlier we looked at a function called triple. While your REPL has the waxOn
+function in session, re-enter the triple function at the prompt:
+
+let triple x = x * 3
+
+3. Now, what will happen if we enter this at our GHCi prompt. Try to reason out
+what you think will happen first, considering what role waxOn is playing in this
+function call. Then enter it, see what does happen, and check your
+understanding:
+
+triple waxOn
+-> 3375
+
+4. Rewrite waxOn as a function with a where clause in your source file.
+Load it into your REPL and make sure it still works as expected!
 -}
+waxOn = x * 5
+  where
+    z = 7
+    x = y ^ 2
+    y = z + 8
+
+{-
+5. Now to the same source file where you have waxOn, add the triple function.
+Remember: You don’t need let and the function name should be at the left margin
+(that is, not nested as one of the waxOn expressions). Make sure it works by
+loading it into your REPL and then entering triple waxOn again at the REPL
+prompt. You should have the same answer as you did above.
+-}
+triple x = x * 3
+
+{-
+6. Now, without changing what you’ve done so far in that file, add a new
+function called waxOff that looks like this:
+
+waxOff x = triple x
+-}
+waxOff x = triple x
+
+{-
+7. Load the source file into your REPL and enter waxOff waxOn at the prompt.
+
+You now have a function, waxOff that can be applied to a variety of arguments –
+not just waxOn but any (numeric) value you want to put in for x. Play with that
+a bit. What is the result of waxOff 10 or waxOff (-50)? Try modifying your
+waxOff function to do something new – perhaps you want to first triple the x
+value and then square it or divide it by 10. Just spend some time getting
+comfortable with modifying the source file code, reloading it, and checking your
+modification in the REPL.
+
+waxOff 10
+-> 30
+waxOff (-50)
+-> -150
+-}
+waxOff' x = (triple x) / 10
